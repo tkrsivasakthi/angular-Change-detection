@@ -1,22 +1,45 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
+  OnChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
   title = 'angular-router-sample';
-  get test() {
-    console.log('test AppComponent')
-    return 1;
+  count = 1;
+
+  strArrayInParent: any[] = [];
+
+  constructor() {}
+  //below function is check C/h detecion when call setIntrval
+  /*   test() {
+    setInterval(() => {
+      this.count++;
+    }, 1000);
+    console.log('test AppComponent');
+    //this.count++;
+  } */
+
+  test() {
+    this.strArrayInParent.push('i am parent');
+    console.log(this.strArrayInParent);
+  }
+
+  ngDoCheck() {
+    console.log('Parent component change detection');
   }
   ngOnInit() {
-    console.log('app')
+    console.log('app');
   }
-  clickA() {}
 }
- 
+
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
